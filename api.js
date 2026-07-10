@@ -7,7 +7,7 @@
 const API = (() => {
 
   // *** เปลี่ยน URL นี้หลัง Deploy Google Apps Script ***
-  const GAS_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwu8rRaPshkM1cqrxFISjf9HcJ_N3IFH5PSjlnoqb_kGunbVii28_75KfydrF_AOTBb/exec';
 
   // In-memory cache ฝั่ง browser (ป้องกัน fetch ซ้ำในหน้าเดียวกัน)
   const _cache = {};
