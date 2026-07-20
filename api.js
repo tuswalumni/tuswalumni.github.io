@@ -1,53 +1,34 @@
-// ============================================================
-//  js/api.js — API Layer
-//  จุดเดียวที่ติดต่อกับ Google Apps Script
-//  เปลี่ยน GAS_URL เป็น Web App URL ที่ได้หลัง Deploy
-// ============================================================
+/**
+ * api.js — เชื่อมต่อกับ Google Apps Script Web API (ContentService / JSON)
+ * ==========================================================================
+ *  1. Deploy Code.gs เป็น Web App บน Google Apps Script
+ *     (Deploy > New deployment > Web app > Execute as: Me > Who has access: Anyone)
+ *  2. เอา URL ที่ได้ (ลงท้ายด้วย /exec) มาใส่แทนค่า API_URL ด้านล่างนี้
+ * ==========================================================================
+ */
+const API_URL = 'https://script.google.com/macros/s/AKfycbwu8rRaPshkM1cqrxFISjf9HcJ_N3IFH5PSjlnoqb_kGunbVii28_75KfydrF_AOTBb/exec';
 
-const API = (() => {
-
-  // *** เปลี่ยน URL นี้หลัง Deploy Google Apps Script ***
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwu8rRaPshkM1cqrxFISjf9HcJ_N3IFH5PSjlnoqb_kGunbVii28_75KfydrF_AOTBb/exec';
-
-  // In-memory cache ฝั่ง browser (ป้องกัน fetch ซ้ำในหน้าเดียวกัน)
-  const _cache = {};
-
-  /**
-   * fetch ข้อมูลจาก GAS
-   * @param {string} action  - 'all' | 'news' | 'committee' | 'stats' | 'config' | 'banners'
-   * @param {boolean} force  - true = บังคับ bypass cache
-   */
-  async function get(action = 'all', force = false) {
-    if (!force && _cache[action]) return _cache[action];
-
-    const url = `${GAS_URL}?action=${action}`;
-
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-
-      if (json._status === 'error') {
-        throw new Error(json._message || 'GAS returned error');
-      }
-
-      _cache[action] = json;
-      return json;
-
-    } catch (err) {
-      console.error(`[API] action="${action}" failed:`, err);
-      throw err; // ให้ caller จัดการ UI
-    }
+/**
+ * ดึงข้อมูลทั้งหมด (config, committee, news, banners, stats) จาก Apps Script
+ * คืนค่าเป็น Promise<object> — throw error ถ้าเชื่อมต่อไม่ได้หรือฝั่ง server error
+ */
+async function fetchAllData() {
+  let res;
+  try {
+    res = await fetch(API_URL, { method: 'GET' });
+  } catch (networkErr) {
+    throw new Error('เชื่อมต่ออินเทอร์เน็ต หรือ API ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง');
   }
 
-  // Shorthand methods
-  const getAll       = (force) => get('all', force);
-  const getNews      = (force) => get('news', force);
-  const getCommittee = (force) => get('committee', force);
-  const getStats     = (force) => get('stats', force);
-  const getConfig    = (force) => get('config', force);
-  const getBanners   = (force) => get('banners', force);
+  if (!res.ok) {
+    throw new Error('เซิร์ฟเวอร์ตอบกลับผิดพลาด (HTTP ' + res.status + ')');
+  }
 
-  return { get, getAll, getNews, getCommittee, getStats, getConfig, getBanners };
+  const json = await res.json();
 
-})();
+  if (!json.success) {
+    throw new Error(json.error || 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุจากฝั่งเซิร์ฟเวอร์');
+  }
+
+  return json.data;
+}
