@@ -10,13 +10,13 @@ let globalData = {};
    INIT
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+  showLoading(true);
   document.getElementById('currentYear').textContent = new Date().getFullYear();
   initBackToTop();
   loadSite();
 });
 
 async function loadSite() {
-  showLoading(true);
   try {
     const data = await API.getAll();
     globalData = data;
