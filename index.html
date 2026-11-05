@@ -5,325 +5,285 @@
     <title>สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มธ. | TU Social Administration Alumni Association</title>
     <meta name="description" content="สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ศูนย์กลางความร่วมมือของศิษย์เก่า ข่าวสาร กิจกรรม และระเบียบการสมาชิก">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8B1E3F">
 
     <link rel="icon" type="image/png" href="logo-tuswalumni.png">
     <link rel="apple-touch-icon" href="logo-tuswalumni.png">
+    <link rel="canonical" href="https://tuswalumni.com/">
 
     <meta property="og:title" content="สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มธ.">
     <meta property="og:description" content="ศูนย์กลางความร่วมมือและการแลกเปลี่ยนเรียนรู้ของพี่น้องชาวสังคมสงเคราะห์ศาสตร์ มธ.">
-    <meta property="og:image" content="logo-tuswalumni.png">
+    <meta property="og:image" content="https://tuswalumni.com/logo-tuswalumni.png">
+    <meta property="og:url" content="https://tuswalumni.com/">
     <meta property="og:type" content="website">
 
+    <link rel="preconnect" href="https://script.google.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
-    <div id="loading">
-      <div class="text-center">
-        <div class="spinner-border text-secondary" style="width: 3rem; height: 3rem;" role="status"></div>
-        <p class="mt-3 text-muted fw-light">กำลังโหลดข้อมูล...</p>
-      </div>
-    </div>
-
-    <div id="loading-error">
-      <div>
-        <i class="bi bi-wifi-off" style="font-size: 3rem; color: var(--tu-claret);"></i>
-        <h5 class="fw-bold mt-3">โหลดข้อมูลไม่สำเร็จ</h5>
-        <p class="text-muted" id="loading-error-message">ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง</p>
-        <button class="btn btn-gold rounded-1 px-4" onclick="retryBoot()">ลองใหม่อีกครั้ง</button>
-      </div>
-    </div>
-
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg sticky-top site-nav">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#" onclick="showPage('home')">
+        <a class="navbar-brand" href="#home">
           <img src="logo-tuswalumni.png" alt="ตราสัญลักษณ์สมาคมฯ">
-          <div class="d-flex flex-column">
-            <span class="navbar-brand-text-main">สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มธ.</span>
-            <span class="navbar-brand-text-sub">TU SOCIAL ADMINISTRATION ALUMNI ASSOCIATION</span>
-          </div>
+          <span class="d-flex flex-column">
+            <span class="brand-main">สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มธ.</span>
+            <span class="brand-sub">TU SOCIAL ADMINISTRATION ALUMNI ASSOCIATION</span>
+          </span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="เปิดเมนู">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav align-items-center">
-            <li class="nav-item"><a class="nav-link active" id="nav-home" onclick="showPage('home')">หน้าหลัก</a></li>
-
+          <ul class="navbar-nav align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" data-nav="home" href="#home">หน้าหลัก</a></li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">เกี่ยวกับสมาคม</a>
+              <button class="nav-link dropdown-toggle" data-nav="history objectives" type="button" data-bs-toggle="dropdown" aria-expanded="false">เกี่ยวกับสมาคม</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" onclick="showPage('history')">ประวัติความเป็นมา</a></li>
-                <li><a class="dropdown-item" onclick="showPage('objectives')">วัตถุประสงค์</a></li>
+                <li><a class="dropdown-item" href="#history">ประวัติความเป็นมา</a></li>
+                <li><a class="dropdown-item" href="#objectives">วัตถุประสงค์</a></li>
               </ul>
             </li>
-
-            <li class="nav-item"><a class="nav-link" id="nav-committee" onclick="showPage('committee')">คณะกรรมการ</a></li>
-            <li class="nav-item"><a class="nav-link" id="nav-news" onclick="showPage('news')">ข่าวสาร/กิจกรรม</a></li>
-
+            <li class="nav-item"><a class="nav-link" data-nav="committee" href="#committee">คณะกรรมการ</a></li>
+            <li class="nav-item"><a class="nav-link" data-nav="news" href="#news">ข่าวสาร/กิจกรรม</a></li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="nav-member-parent" href="#" role="button" data-bs-toggle="dropdown">สมาชิก</a>
+              <button class="nav-link dropdown-toggle" data-nav="members-info rights" type="button" data-bs-toggle="dropdown" aria-expanded="false">สมาชิก</button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" onclick="showPage('members-info')">สมาชิก (ประเภท/คุณสมบัติ)</a></li>
-                <li><a class="dropdown-item" onclick="showPage('rights')">สิทธิและหน้าที่สมาชิก</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                  <a class="dropdown-item fw-bold" style="color: var(--tu-claret); background-color: rgba(212, 175, 55, 0.15);" href="https://members.tuswalumni.com/" target="_blank" rel="noopener">
-                    <i class="bi bi-box-arrow-up-right me-2 text-warning"></i>เข้าสู่ระบบสมาชิก
-                  </a>
-                </li>
+                <li><a class="dropdown-item" href="#members-info">ประเภทและคุณสมบัติ</a></li>
+                <li><a class="dropdown-item" href="#rights">สิทธิและหน้าที่สมาชิก</a></li>
               </ul>
             </li>
+            <li class="nav-item"><a class="btn btn-member" href="https://members.tuswalumni.com/" target="_blank" rel="noopener">เข้าสู่ระบบสมาชิก <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div id="home" class="app-page active">
+    <div id="data-error" role="alert">
+      <div class="container py-2 d-flex flex-wrap align-items-center justify-content-between gap-2">
+        <span><i class="bi bi-wifi-off me-2 text-claret" aria-hidden="true"></i><span id="data-error-message">โหลดข่าวและข้อมูลสมาชิกไม่สำเร็จ</span></span>
+        <button class="btn btn-sm btn-claret px-3" type="button" onclick="retryBoot()">ลองใหม่อีกครั้ง</button>
+      </div>
+    </div>
 
-      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators" id="carousel-indicators"></div>
-        <div class="carousel-inner" id="carousel-inner"></div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span>
-        </button>
+    <main>
+    <!-- HOME -->
+    <div id="home" class="app-page active">
+      <div id="hero">
+        <div class="hero-skeleton skeleton" style="border-radius:0"></div>
       </div>
 
-      <section class="py-5 bg-white border-bottom">
-        <div class="container text-center">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <h2 class="fw-bold mb-3" style="color: var(--tu-claret);">ยินดีต้อนรับสู่สมาคมฯ</h2>
-              <p class="text-secondary mb-4" style="font-size: 1.1rem; font-weight: 300;">
-                ศูนย์กลางความร่วมมือและการแลกเปลี่ยนเรียนรู้ของพี่น้องชาวสังคมสงเคราะห์ศาสตร์ มธ.<br>
-                ร่วมสานต่อเจตนารมณ์ในการรับใช้สังคมและพัฒนาประเทศ
-              </p>
-              <div class="d-flex justify-content-center gap-3">
-                <button onclick="showPage('history')" class="btn btn-outline-dark rounded-1 px-4">อ่านประวัติความเป็นมา</button>
-                <button onclick="showPage('objectives')" class="btn btn-outline-gold rounded-1 px-4">วัตถุประสงค์</button>
-              </div>
-            </div>
+      <section class="stats-band" id="stats-section" aria-label="สถิติข้อมูลสมาชิก">
+        <div class="container">
+          <div class="row g-4 align-items-center">
+            <div class="col-6 col-md-3"><div class="stat"><div class="stat-number" id="count-ordinary">–</div><div class="stat-label">สมาชิกสามัญ</div></div></div>
+            <div class="col-6 col-md-3"><div class="stat"><div class="stat-number" id="count-associate">–</div><div class="stat-label">สมาชิกสมทบ</div></div></div>
+            <div class="col-6 col-md-3"><div class="stat"><div class="stat-number" id="count-honorary">–</div><div class="stat-label">สมาชิกกิตติมศักดิ์</div></div></div>
+            <div class="col-6 col-md-3"><div class="stat-note">นับเฉพาะสมาชิกที่มีสถานะ &ldquo;สมาชิกสมบูรณ์&rdquo;</div></div>
           </div>
         </div>
       </section>
 
-      <section class="py-5">
+      <section class="section">
         <div class="container">
-          <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-            <h3 class="h4 fw-bold" style="color: var(--slate-gray); border-left: 5px solid var(--tu-claret); padding-left: 15px;">ข่าวประชาสัมพันธ์ล่าสุด</h3>
-            <button class="btn btn-sm text-muted" onclick="showPage('news')">ดูทั้งหมด &rarr;</button>
+          <div class="section-head">
+            <h2 class="section-title">ข่าวประชาสัมพันธ์ล่าสุด</h2>
+            <a class="link-more" href="#news">ดูทั้งหมด &rarr;</a>
           </div>
-          <div class="row g-4" id="home-news-container"></div>
+          <div class="row g-4" id="home-news-container">
+            <div class="col-md-4 col-sm-6"><div class="skeleton" style="height:320px"></div></div>
+            <div class="col-md-4 col-sm-6"><div class="skeleton" style="height:320px"></div></div>
+            <div class="col-md-4 col-sm-6 d-none d-md-block"><div class="skeleton" style="height:320px"></div></div>
+          </div>
         </div>
       </section>
 
-      <section class="py-5 bg-light" id="stats-section" style="display:none;">
+      <section class="section pt-0">
         <div class="container">
-          <div class="text-center mb-5">
-            <h3 class="fw-bold" style="color: var(--slate-gray);">สถิติข้อมูลสมาชิก</h3>
-            <div class="bg-warning mx-auto mt-2" style="width: 50px; height: 3px;"></div>
-            <p class="text-muted small mt-2">นับเฉพาะสมาชิกที่มีสถานะ &ldquo;สมาชิกสมบูรณ์&rdquo; เท่านั้น</p>
-          </div>
-          <div class="row g-4 justify-content-center">
-            <div class="col-md-4">
-              <div class="stat-card stat-bg-red">
-                <div class="stat-title">สมาชิกสามัญ</div>
-                <div class="stat-number" id="count-ordinary">0</div>
-                <i class="bi bi-people-fill stat-icon"></i>
-              </div>
+          <div class="panel d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div>
+              <h2 class="section-title mb-1" style="font-size:1.4rem">ยินดีต้อนรับสู่สมาคมฯ</h2>
+              <p class="text-ink-2 mb-0">ศูนย์กลางความร่วมมือและการแลกเปลี่ยนเรียนรู้ของพี่น้องชาวสังคมสงเคราะห์ศาสตร์ มธ. ร่วมสานต่อเจตนารมณ์ในการรับใช้สังคมและพัฒนาประเทศ</p>
             </div>
-            <div class="col-md-4">
-              <div class="stat-card stat-bg-blue">
-                <div class="stat-title">สมาชิกสมทบ</div>
-                <div class="stat-number" id="count-associate">0</div>
-                <i class="bi bi-person-check-fill stat-icon"></i>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="stat-card stat-bg-green">
-                <div class="stat-title">สมาชิกกิตติมศักดิ์</div>
-                <div class="stat-number" id="count-honorary">0</div>
-                <i class="bi bi-award-fill stat-icon"></i>
-              </div>
+            <div class="d-flex gap-2 flex-shrink-0">
+              <a href="#history" class="btn btn-claret px-4">ประวัติความเป็นมา</a>
+              <a href="#objectives" class="btn btn-outline-secondary px-4">วัตถุประสงค์</a>
             </div>
           </div>
         </div>
       </section>
     </div>
 
+    <!-- HISTORY -->
     <div id="history" class="app-page">
-      <div class="container py-5">
-        <h2 class="page-title">ประวัติความเป็นมา</h2>
+      <div class="container section" style="max-width:920px">
+        <div class="page-head">
+          <div class="eyebrow">เกี่ยวกับสมาคม</div>
+          <h1 class="page-title">ประวัติความเป็นมา</h1>
+        </div>
+
+        <div class="timeline mb-5">
+          <div class="tl-year">2520</div>
+          <div class="tl-item">
+            <div class="tl-title">จุดเริ่มต้นแห่งการรวมพลัง</div>
+            <p>สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ได้เริ่มก่อตั้งเมื่อปี <strong>พ.ศ. 2520</strong> โดยคณะนักศึกษารุ่นสุดท้ายที่ไม่ต้องสอบเข้ามหาวิทยาลัย (ปี พ.ศ. 2502) ซึ่งประกอบด้วย คุณชาลี ปิณฑะดิษ, คุณอินสน ชมภู, คุณอรพินท์ เผดิมชิต และ พ.ต.ท.ปกรณ์ กรองทอง</p>
+            <p>โดยได้รับความร่วมมือจาก <strong>อาจารย์ณัฐไชย ตันติสุข</strong> (คณบดีคณะสังคมสงเคราะห์ศาสตร์ ในขณะนั้น) รวมทั้งคณาจารย์ของทางคณะ อาทิ อาจารย์ชลิต ทองปลิว และ อาจารย์ดิเรก เต็งจำรูญ ได้ร่วมกันหารือเพื่อก่อตั้งสมาคม เนื่องจากในขณะนั้น คณะสังคมสงเคราะห์ศาสตร์ เป็นคณะเดียวในมหาวิทยาลัยธรรมศาสตร์ ที่ยังไม่มีสมาคมนักศึกษาเก่า</p>
+          </div>
+          <div class="tl-year">2522</div>
+          <div class="tl-item">
+            <div class="tl-title">ก้าวสู่การเป็นองค์กรนิติบุคคล</div>
+            <p>แม้การดำเนินการในช่วงแรกจะมีความเห็นที่หลากหลาย โดยบางส่วนเห็นว่าควรใช้สมาคมนักสังคมสงเคราะห์แห่งประเทศไทยเป็นศูนย์รวม แต่เพื่อให้คณะสังคมสงเคราะห์ศาสตร์มีผู้แทนเข้าร่วมกิจกรรมต่างๆ ของทางมหาวิทยาลัยได้อย่างสมบูรณ์ คณะผู้ก่อตั้งจึงได้ดำเนินการจดทะเบียน <strong>"สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์"</strong> กับสำนักวัฒนธรรมแห่งชาติ ในปี <strong>พ.ศ. 2522</strong></p>
+          </div>
+          <div class="tl-year text-gold">ปัจจุบัน</div>
+          <div class="tl-item is-now">
+            <div class="tl-title">ดำเนินการมาแล้ว <span class="js-years">49</span> ปี</div>
+            <p>นางสาวดรุณี มนัสวานิช นายกสมาคมฯ คนปัจจุบัน</p>
+          </div>
+        </div>
+
+        <div class="panel mb-4">
+          <div class="panel-title">ทำเนียบนายกสมาคมฯ</div>
+          <p class="text-ink-2">นับจากการก่อตั้ง สมาคมฯ ได้มีการคัดเลือกคณะกรรมการและนายกสมาคมฯ เพื่อบริหารงานมาอย่างต่อเนื่อง โดยมีรายนามนายกสมาคมฯ ดังนี้</p>
+          <ol class="president-list">
+            <li><span class="no">1</span><span><strong>คุณอำพล สิงหโกวินท์</strong> <span class="text-ink-3">(นายกสมาคมคนแรก)</span></span></li>
+            <li><span class="no">2</span><span>คุณไสว พราหมณี</span></li>
+            <li><span class="no">3</span><span>คุณธิดา ศรีไพพรรณ</span></li>
+            <li><span class="no">4</span><span>คุณปรางทิพย์ ทวีพาณิชย์</span></li>
+            <li><span class="no">5</span><span>นางนภา เศรษฐกร</span></li>
+            <li><span class="no">6</span><span>นางนนทินี เพ็ชรไพศิษฎ์</span></li>
+            <li><span class="no">7</span><span>นางวรรภา ลำเจียกเทศ</span></li>
+            <li><span class="no">8</span><span>นางมยุรี ยกตรี</span></li>
+            <li><span class="no">9</span><span>นางสาวแรมรุ้ง วรวัธ</span></li>
+            <li><span class="no">10</span><span><strong>นางสาวดรุณี มนัสวานิช</strong> <span class="text-claret">(นายกสมาคมฯ คนปัจจุบัน)</span></span></li>
+          </ol>
+        </div>
 
         <div class="row g-4">
-          <div class="col-12">
-            <div class="bg-white p-4 p-lg-5 rounded-3 shadow-sm border-start border-5" style="border-color: var(--tu-claret) !important;">
-
-              <h4 class="fw-bold mb-3" style="color: var(--tu-claret);">จุดเริ่มต้นแห่งการรวมพลัง (พ.ศ. 2520)</h4>
-              <p class="text-secondary" style="line-height: 1.8;">
-                สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ได้เริ่มก่อตั้งเมื่อปี <strong>พ.ศ. 2520</strong> โดยคณะนักศึกษารุ่นสุดท้ายที่ไม่ต้องสอบเข้ามหาวิทยาลัย (ปี พ.ศ. 2502) ซึ่งประกอบด้วย
-                คุณชาลี ปิณฑะดิษ, คุณอินสน ชมภู, คุณอรพินท์ เผดิมชิต และ พ.ต.ท.ปกรณ์ กรองทอง
-              </p>
-              <p class="text-secondary" style="line-height: 1.8;">
-                โดยได้รับความร่วมมือจาก <strong>อาจารย์ณัฐไชย ตันติสุข</strong> (คณบดีคณะสังคมสงเคราะห์ศาสตร์ ในขณะนั้น) รวมทั้งคณาจารย์ของทางคณะ อาทิ อาจารย์ชลิต ทองปลิว และ อาจารย์ดิเรก เต็งจำรูญ ได้ร่วมกันหารือเพื่อก่อตั้งสมาคม เนื่องจากในขณะนั้น คณะสังคมสงเคราะห์ศาสตร์ เป็นคณะเดียวในมหาวิทยาลัยธรรมศาสตร์ ที่ยังไม่มีสมาคมนักศึกษาเก่า
-              </p>
-
-              <h4 class="fw-bold mt-4 mb-3" style="color: var(--tu-claret);">ก้าวสู่การเป็นองค์กรนิติบุคคล (พ.ศ. 2522)</h4>
-              <p class="text-secondary" style="line-height: 1.8;">
-                แม้การดำเนินการในช่วงแรกจะมีความเห็นที่หลากหลาย โดยบางส่วนเห็นว่าควรใช้สมาคมนักสังคมสงเคราะห์แห่งประเทศไทยเป็นศูนย์รวม แต่เพื่อให้คณะสังคมสงเคราะห์ศาสตร์มีผู้แทนเข้าร่วมกิจกรรมต่างๆ ของทางมหาวิทยาลัยได้อย่างสมบูรณ์ คณะผู้ก่อตั้งจึงได้ดำเนินการจดทะเบียน <strong>"สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์"</strong> กับสำนักวัฒนธรรมแห่งชาติ ในปี <strong>พ.ศ. 2522</strong>
-              </p>
-
-              <h5 class="fw-bold mt-4 mb-3" style="color: var(--slate-gray);">ทำเนียบนายกสมาคมฯ</h5>
-              <p class="text-secondary" style="line-height: 1.8;">
-                นับจากการก่อตั้ง สมาคมฯ ได้มีการคัดเลือกคณะกรรมการและนายกสมาคมฯ เพื่อบริหารงานมาอย่างต่อเนื่อง โดยมีรายนามนายกสมาคมฯ ดังนี้:
-              </p>
-              <div class="p-3 bg-light rounded border-start border-3 border-warning">
-                <ul class="text-secondary mb-0 small">
-                  <li><strong>คุณอำพล สิงหโกวินท์</strong> (นายกสมาคมคนแรก)</li>
-                  <li>คุณไสว พราหมณี</li>
-                  <li>คุณธิดา ศรีไพพรรณ</li>
-                  <li>คุณปรางทิพย์ ทวีพาณิชย์</li>
-                  <li>นางนภา เศรษฐกร</li>
-                  <li>นางนนทินี เพ็ชรไพศิษฎ์</li>
-                  <li>นางวรรภา ลำเจียกเทศ</li>
-                  <li>นางมยุรี ยกตรี</li>
-                  <li>นางสาวแรมรุ้ง วรวัธ</li>
-                  <li class="mt-2 text-dark"><i class="bi bi-star-fill text-warning me-2"></i><strong>นางสาวดรุณี มนัสวานิช</strong> (นายกสมาคมฯ คนปัจจุบัน)</li>
-                </ul>
-              </div>
-              <p class="text-muted small mt-3 text-end"><em>*ปัจจุบันสมาคมดำเนินการมาแล้ว 48 ปี</em></p>
-            </div>
-          </div>
-
           <div class="col-md-6">
-            <div class="card-modern p-4 h-100 border-top-claret">
-              <h5 class="fw-bold mb-3" style="color: var(--tu-claret);"><i class="bi bi-card-heading me-2"></i>ชื่อและอักษรย่อ</h5>
+            <div class="panel">
+              <div class="panel-title">ชื่อและอักษรย่อ</div>
               <div class="mb-3">
-                <small class="text-muted d-block">ชื่อภาษาไทย</small>
-                <span class="fw-bold text-dark">สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</span>
-                <span class="badge bg-light text-dark border ms-2">สส.มธ.</span>
+                <small class="text-ink-3 d-block">ชื่อภาษาไทย</small>
+                <span class="fw-bold">สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</span><span class="tag">สส.มธ.</span>
               </div>
               <div>
-                <small class="text-muted d-block">ชื่อภาษาอังกฤษ</small>
-                <span class="fw-bold text-dark">Thammasat University Social Administration Alumni Association</span>
-                <span class="badge bg-light text-dark border ms-2">TU.S.A.A.A.</span>
+                <small class="text-ink-3 d-block">ชื่อภาษาอังกฤษ</small>
+                <span class="fw-bold">Thammasat University Social Administration Alumni Association</span><span class="tag">TU.S.A.A.A.</span>
               </div>
             </div>
           </div>
-
           <div class="col-md-6">
-            <div class="card-modern p-4 h-100 border-top-gold">
-              <h5 class="fw-bold mb-3" style="color: var(--slate-gray);"><i class="bi bi-award me-2"></i>เครื่องหมายสมาคมฯ</h5>
-
-              <div class="text-center mb-3">
-                <img src="logo-tuswalumni.png" alt="ตราสัญลักษณ์สมาคมฯ" style="height: 120px; width: auto;" class="img-fluid">
+            <div class="panel d-flex gap-4 align-items-start">
+              <img src="logo-tuswalumni.png" alt="ตราสัญลักษณ์สมาคมฯ" style="width:110px;height:110px;flex-shrink:0">
+              <div>
+                <div class="panel-title">เครื่องหมายสมาคมฯ</div>
+                <p class="text-ink-2 mb-2">เป็นรูป <strong>"ธรรมจักร"</strong> ตรงกลางเป็นรูปครอบครัว ประกอบด้วย <strong>พ่อ แม่ ลูก กำลังเดินไปสู่แสงสว่าง</strong></p>
+                <ul class="text-ink-2 small mb-0 ps-3">
+                  <li>ขอบบนมีคำว่า &ldquo;สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์&rdquo;</li>
+                  <li>ขอบล่างมีคำว่า &ldquo;มหาวิทยาลัยธรรมศาสตร์&rdquo;</li>
+                </ul>
               </div>
-
-              <p class="text-secondary mb-0">
-                เป็นรูป <strong>"ธรรมจักร"</strong> ตรงกลางเป็นรูปครอบครัว ประกอบด้วย <strong>พ่อ แม่ ลูก กำลังเดินไปสู่แสงสว่าง</strong>
-              </p>
-              <ul class="text-secondary small mt-2 mb-0">
-                <li>ขอบบนมีคำว่า &ldquo;สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์&rdquo;</li>
-                <li>ขอบล่างมีคำว่า &ldquo;มหาวิทยาลัยธรรมศาสตร์&rdquo;</li>
-              </ul>
             </div>
           </div>
         </div>
-
-        <div class="mt-4 text-center">
-          <small class="text-muted">เรียบเรียงโดย: วรรภา ลำเจียกเทศ</small>
-        </div>
+        <p class="text-ink-3 small text-center mt-4 mb-0">เรียบเรียงโดย: วรรภา ลำเจียกเทศ</p>
       </div>
     </div>
 
+    <!-- OBJECTIVES -->
     <div id="objectives" class="app-page">
-      <div class="container py-5">
-        <h2 class="page-title">วัตถุประสงค์สมาคมฯ</h2>
-        <p class="lead mb-5 text-muted fw-light">สมาคมฯ จัดตั้งขึ้นโดยมีเป้าหมายหลัก 6 ประการ ดังนี้:</p>
+      <div class="container section">
+        <div class="page-head">
+          <div class="eyebrow">เกี่ยวกับสมาคม</div>
+          <h1 class="page-title">วัตถุประสงค์สมาคมฯ</h1>
+          <p class="page-lead">สมาคมฯ จัดตั้งขึ้นโดยมีเป้าหมายหลัก 6 ประการ ดังนี้</p>
+        </div>
         <div class="row g-4">
-          <div class="col-md-6 col-lg-4"><div class="card-modern p-4 border-top-claret"><h5 class="fw-bold" style="color: var(--tu-claret);">1. สร้างความสามัคคี</h5><p class="text-muted small mt-2">เป็นศูนย์กลางเชื่อมความสัมพันธ์ของศิษย์เก่า ให้มีความแน่นแฟ้นกลมเกลียว</p></div></div>
-          <div class="col-md-6 col-lg-4"><div class="card-modern p-4 border-top-gold"><h5 class="fw-bold" style="color: var(--slate-gray);">2. วิชาการและวิชาชีพ</h5><p class="text-muted small mt-2">แลกเปลี่ยนเรียนรู้ จัดบริการวิชาการ และพัฒนางานด้านสวัสดิการสังคมและสังคมสงเคราะห์</p></div></div>
-          <div class="col-md-6 col-lg-4"><div class="card-modern p-4 border-top-claret"><h5 class="fw-bold" style="color: var(--tu-claret);">3. สวัสดิการ</h5><p class="text-muted small mt-2">ให้การช่วยเหลือสมาชิกในยามจำเป็น เพื่อสร้างความมั่นคงในหมู่คณะ</p></div></div>
-          <div class="col-md-6 col-lg-4"><div class="card-modern p-4 border-top-gold"><h5 class="fw-bold" style="color: var(--slate-gray);">4. สนับสนุนรุ่นน้อง</h5><p class="text-muted small mt-2">สนับสนุนนักศึกษาปัจจุบันที่ขาดแคลนทุนทรัพย์ ให้มีโอกาสทางการศึกษา</p></div></div>
-          <div class="col-md-6 col-lg-4"><div class="card-modern p-4 border-top-claret"><h5 class="fw-bold" style="color: var(--tu-claret);">5. เชิดชูเกียรติ</h5><p class="text-muted small mt-2">สนับสนุนและสร้างชื่อเสียงให้แก่คณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p></div></div>
-          <div class="col-md-6 col-lg-4"><div class="card-modern p-4 border-top-gold"><h5 class="fw-bold" style="color: var(--slate-gray);">6. เป็นกลาง</h5><p class="text-muted small mt-2">ดำเนินการโดยอิสระ และไม่เกี่ยวข้องกับการเมือง</p></div></div>
+          <div class="col-md-6 col-lg-4"><div class="panel"><div class="obj-no">01</div><h3 class="h5 fw-bold">สร้างความสามัคคี</h3><p class="text-ink-2 mb-0">เป็นศูนย์กลางเชื่อมความสัมพันธ์ของศิษย์เก่า ให้มีความแน่นแฟ้นกลมเกลียว</p></div></div>
+          <div class="col-md-6 col-lg-4"><div class="panel"><div class="obj-no">02</div><h3 class="h5 fw-bold">วิชาการและวิชาชีพ</h3><p class="text-ink-2 mb-0">แลกเปลี่ยนเรียนรู้ จัดบริการวิชาการ และพัฒนางานด้านสวัสดิการสังคมและสังคมสงเคราะห์</p></div></div>
+          <div class="col-md-6 col-lg-4"><div class="panel"><div class="obj-no">03</div><h3 class="h5 fw-bold">สวัสดิการ</h3><p class="text-ink-2 mb-0">ให้การช่วยเหลือสมาชิกในยามจำเป็น เพื่อสร้างความมั่นคงในหมู่คณะ</p></div></div>
+          <div class="col-md-6 col-lg-4"><div class="panel"><div class="obj-no">04</div><h3 class="h5 fw-bold">สนับสนุนรุ่นน้อง</h3><p class="text-ink-2 mb-0">สนับสนุนนักศึกษาปัจจุบันที่ขาดแคลนทุนทรัพย์ ให้มีโอกาสทางการศึกษา</p></div></div>
+          <div class="col-md-6 col-lg-4"><div class="panel"><div class="obj-no">05</div><h3 class="h5 fw-bold">เชิดชูเกียรติ</h3><p class="text-ink-2 mb-0">สนับสนุนและสร้างชื่อเสียงให้แก่คณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p></div></div>
+          <div class="col-md-6 col-lg-4"><div class="panel"><div class="obj-no">06</div><h3 class="h5 fw-bold">เป็นกลาง</h3><p class="text-ink-2 mb-0">ดำเนินการโดยอิสระ และไม่เกี่ยวข้องกับการเมือง</p></div></div>
         </div>
       </div>
     </div>
 
+    <!-- MEMBERS INFO -->
     <div id="members-info" class="app-page">
-      <div class="container py-5">
-        <h2 class="page-title">ระเบียบการสมาชิก</h2>
-        <div class="p-3 mb-4 rounded-1" style="background-color: white; border-left: 4px solid var(--tu-gold);">
-          <h5 class="fw-bold mb-0" style="color: var(--slate-gray);">ข้อบังคับสมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์ (เกี่ยวกับสมาชิก)</h5>
+      <div class="container section">
+        <div class="page-head">
+          <div class="eyebrow">สมาชิก</div>
+          <h1 class="page-title">ระเบียบการสมาชิก</h1>
+          <p class="page-lead">ข้อบังคับสมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์ (เกี่ยวกับสมาชิก)</p>
         </div>
+
+        <h2 class="panel-title">1. ประเภทสมาชิกและคุณสมบัติ</h2>
+        <div class="row g-4 mb-5">
+          <div class="col-md-4"><div class="panel type-card"><div class="fw-bold mb-2">1.1 สมาชิกสามัญ</div><p class="text-ink-2 mb-0">ผู้สำเร็จการศึกษาจากคณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p></div></div>
+          <div class="col-md-4"><div class="panel type-card"><div class="fw-bold mb-2">1.2 สมาชิกสมทบ</div><p class="text-ink-2 mb-0">ผู้เคยศึกษา หรือ นักศึกษาปัจจุบันในคณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p></div></div>
+          <div class="col-md-4"><div class="panel type-card" style="border-top-color:var(--gold)"><div class="fw-bold mb-2">1.3 สมาชิกกิตติมศักดิ์</div><p class="text-ink-2 mb-0">บุคคลผู้ทรงเกียรติคุณ หรือผู้มีอุปการะคุณแก่สมาคม (เชิญโดยมติกรรมการสมาคมฯ)</p></div></div>
+        </div>
+
         <div class="row g-4">
-          <div class="col-lg-12">
-            <div class="card-modern p-4">
-              <h5 class="fw-bold pb-2 border-bottom mb-3" style="color: var(--tu-claret);">1. ประเภทสมาชิกและคุณสมบัติ</h5>
-              <div class="row g-3">
-                <div class="col-md-4"><div class="p-3 bg-light rounded h-100 border-start border-3 border-danger"><strong class="text-dark">1.1 สมาชิกสามัญ</strong><p class="small text-muted mt-2 mb-0">ผู้สำเร็จการศึกษาจากคณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p></div></div>
-                <div class="col-md-4"><div class="p-3 bg-light rounded h-100 border-start border-3 border-secondary"><strong class="text-dark">1.2 สมาชิกสมทบ</strong><p class="small text-muted mt-2 mb-0">ผู้เคยศึกษา หรือ นักศึกษาปัจจุบันในคณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์</p></div></div>
-                <div class="col-md-4"><div class="p-3 bg-light rounded h-100 border-start border-3 border-warning"><strong class="text-dark">1.3 สมาชิกกิตติมศักดิ์</strong><p class="small text-muted mt-2 mb-0">บุคคลผู้ทรงเกียรติคุณ หรือผู้มีอุปการะคุณแก่สมาคม (เชิญโดยมติกรรมการสมาคมฯ)</p></div></div>
-              </div>
-            </div>
-          </div>
           <div class="col-lg-7">
-            <div class="card-modern p-4">
-              <h5 class="fw-bold pb-2 border-bottom mb-3" style="color: var(--tu-claret);">2. ขั้นตอนการสมัครสมาชิก (สามัญ/สมทบ)</h5>
-              <ul class="list-group list-group-flush small">
-                <li class="list-group-item border-0 px-0 pb-2"><span class="badge bg-secondary me-2 rounded-pill">2.1</span> ยื่นใบสมัคร พร้อมระบุสมาชิกรับรอง 1 คน</li>
-                <li class="list-group-item border-0 px-0 pb-2"><span class="badge bg-secondary me-2 rounded-pill">2.2</span> ประกาศรายชื่อ 15 วัน เพื่อการคัดค้าน/ตรวจสอบคุณสมบัติ</li>
-                <li class="list-group-item border-0 px-0 pb-2"><span class="badge bg-secondary me-2 rounded-pill">2.3</span> แจ้งผลการรับสมัคร (เมื่อมีมติรับ/ประกาศรายชื่อครบ 15 วัน)</li>
-                <li class="list-group-item border-0 px-0 pb-2"><span class="badge me-2 rounded-pill text-dark" style="background-color: var(--tu-gold);">2.4</span> ชำระค่าจดทะเบียน ภายใน 30 วันหลังได้รับแจ้ง</li>
-              </ul>
-              <div class="mt-3 p-2 rounded bg-light border-start border-3 border-warning"><small class="text-secondary"><strong>*หมายเหตุ:</strong> เริ่มเป็นสมาชิกสมบูรณ์เมื่อชำระเงินแล้ว</small></div>
+            <div class="panel">
+              <h2 class="panel-title">2. ขั้นตอนการสมัครสมาชิก (สามัญ/สมทบ)</h2>
+              <ol class="steps">
+                <li><span class="n">2.1</span><span>ยื่นใบสมัคร พร้อมระบุสมาชิกรับรอง 1 คน</span></li>
+                <li><span class="n">2.2</span><span>ประกาศรายชื่อ 15 วัน เพื่อการคัดค้าน/ตรวจสอบคุณสมบัติ</span></li>
+                <li><span class="n">2.3</span><span>แจ้งผลการรับสมัคร (เมื่อมีมติรับ/ประกาศรายชื่อครบ 15 วัน)</span></li>
+                <li><span class="n">2.4</span><span>ชำระค่าจดทะเบียน ภายใน 30 วันหลังได้รับแจ้ง</span></li>
+              </ol>
+              <div class="note mt-3"><strong>หมายเหตุ:</strong> เริ่มเป็นสมาชิกสมบูรณ์เมื่อชำระเงินแล้ว</div>
+              <a class="btn btn-claret px-4 mt-4" href="https://members.tuswalumni.com/" target="_blank" rel="noopener">สมัครสมาชิก / ตรวจสอบสถานะ</a>
             </div>
           </div>
           <div class="col-lg-5">
-            <div class="card-modern p-4" style="background-color: var(--tu-claret); color: white;">
-              <h5 class="fw-bold pb-2 border-bottom border-white mb-3 text-white">3. อัตราค่าจดทะเบียนสมาชิก</h5>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white border-opacity-25"><span><i class="bi bi-person-check-fill me-2"></i> สมาชิกสามัญ</span><span class="fw-bold">300 บาท <small class="opacity-75 fw-normal">(ตลอดชีพ)</small></span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-white border-opacity-25"><span><i class="bi bi-person-badge me-2"></i> สมาชิกสมทบ</span><span class="fw-bold">100 บาท <small class="opacity-75 fw-normal">(ต่อปี)</small></span></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-0"><span><i class="bi bi-star-fill text-warning me-2"></i> สมาชิกกิตติมศักดิ์</span><span class="fw-bold" style="color: var(--tu-gold);">ฟรี</span></li>
-              </ul>
+            <div class="panel fee-panel">
+              <h2 class="panel-title text-white">3. อัตราค่าจดทะเบียนสมาชิก</h2>
+              <div class="fee-row"><span>สมาชิกสามัญ</span><span><span class="fee-price">300 บาท</span> <span class="fee-unit">ตลอดชีพ</span></span></div>
+              <div class="fee-row"><span>สมาชิกสมทบ</span><span><span class="fee-price">100 บาท</span> <span class="fee-unit">ต่อปี</span></span></div>
+              <div class="fee-row"><span>สมาชิกกิตติมศักดิ์</span><span class="fee-price" style="color:var(--gold-light)">ฟรี</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- RIGHTS -->
     <div id="rights" class="app-page">
-      <div class="container py-5">
-        <h2 class="page-title">สิทธิและหน้าที่สมาชิก</h2>
-        <div class="row g-5">
+      <div class="container section">
+        <div class="page-head">
+          <div class="eyebrow">สมาชิก</div>
+          <h1 class="page-title">สิทธิและหน้าที่สมาชิก</h1>
+        </div>
+        <div class="row g-4">
           <div class="col-lg-6">
-            <div class="card-modern p-4 border-left-gold">
-              <h4 class="fw-bold mb-4" style="color: var(--slate-gray);"><i class="bi bi-shield-check text-warning me-2"></i> สิทธิของสมาชิก</h4>
-              <ul class="list-unstyled small text-secondary">
-                <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-warning me-3 flex-shrink-0"></i> <div><strong class="text-dark">1. การเข้าร่วมและออกเสียง:</strong> มีสิทธิเข้าร่วมงานและประชุมใหญ่ เพื่อออกเสียงลงคะแนนและแสดงความคิดเห็น</div></li>
-                <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-warning me-3 flex-shrink-0"></i> <div><strong class="text-dark">2. ข้อยกเว้น:</strong> สมาชิกอื่น (ที่ไม่ใช่สมาชิกสามัญ) มีสิทธิเหมือนสมาชิกสามัญทุกประการ <span class="text-danger">ยกเว้น</span> สิทธิในการลงคะแนนเสียงเลือกตั้ง หรือการสมัครเป็นกรรมการสมาคม</div></li>
-                <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-warning me-3 flex-shrink-0"></i> <div><strong class="text-dark">3. การตรวจสอบ:</strong> มีสิทธิไต่ถาม หรือขอตรวจสอบเอกสาร ทะเบียน และทรัพย์สินของสมาคมได้ (ในเวลาอันสมควร)</div></li>
-                <li class="mb-3 d-flex"><i class="bi bi-check-circle-fill text-warning me-3 flex-shrink-0"></i> <div><strong class="text-dark">4. สัญลักษณ์:</strong> มีสิทธิประดับเครื่องหมายของสมาคม</div></li>
-                <li class="d-flex"><i class="bi bi-check-circle-fill text-warning me-3 flex-shrink-0"></i> <div><strong class="text-dark">5. การเชิญแขก:</strong> เชิญบุคคลภายนอกมาร่วมงานได้ (โดยสมาชิกต้องรับผิดชอบแขกผู้นั้น)</div></li>
+            <div class="panel">
+              <h2 class="panel-title">สิทธิของสมาชิก</h2>
+              <ul class="check-list">
+                <li><i class="bi bi-check2-circle" aria-hidden="true"></i><div><strong>1. การเข้าร่วมและออกเสียง:</strong> มีสิทธิเข้าร่วมงานและประชุมใหญ่ เพื่อออกเสียงลงคะแนนและแสดงความคิดเห็น</div></li>
+                <li><i class="bi bi-check2-circle" aria-hidden="true"></i><div><strong>2. ข้อยกเว้น:</strong> สมาชิกอื่น (ที่ไม่ใช่สมาชิกสามัญ) มีสิทธิเหมือนสมาชิกสามัญทุกประการ <span class="emph">ยกเว้น</span> สิทธิในการลงคะแนนเสียงเลือกตั้ง หรือการสมัครเป็นกรรมการสมาคม</div></li>
+                <li><i class="bi bi-check2-circle" aria-hidden="true"></i><div><strong>3. การตรวจสอบ:</strong> มีสิทธิไต่ถาม หรือขอตรวจสอบเอกสาร ทะเบียน และทรัพย์สินของสมาคมได้ (ในเวลาอันสมควร)</div></li>
+                <li><i class="bi bi-check2-circle" aria-hidden="true"></i><div><strong>4. สัญลักษณ์:</strong> มีสิทธิประดับเครื่องหมายของสมาคม</div></li>
+                <li><i class="bi bi-check2-circle" aria-hidden="true"></i><div><strong>5. การเชิญแขก:</strong> เชิญบุคคลภายนอกมาร่วมงานได้ (โดยสมาชิกต้องรับผิดชอบแขกผู้นั้น)</div></li>
               </ul>
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="card-modern p-4 border-left-claret">
-              <h4 class="fw-bold mb-4" style="color: var(--tu-claret);"><i class="bi bi-person-exclamation me-2"></i> หน้าที่ของสมาชิก</h4>
-              <ul class="list-unstyled small text-secondary">
-                <li class="mb-3 d-flex"><i class="bi bi-arrow-right-circle-fill text-danger me-3 flex-shrink-0"></i> <div><strong class="text-dark">1. ปฏิบัติตามกฎ:</strong> เคารพข้อบังคับและระเบียบของสมาคมโดยเคร่งครัด</div></li>
-                <li class="mb-3 d-flex"><i class="bi bi-arrow-right-circle-fill text-danger me-3 flex-shrink-0"></i> <div><strong class="text-dark">2. ให้ความร่วมมือ:</strong> ช่วยเหลือการดำเนินงานและกิจกรรมต่างๆ ของสมาคมด้วยความเต็มใจ</div></li>
-                <li class="mb-3 d-flex"><i class="bi bi-arrow-right-circle-fill text-danger me-3 flex-shrink-0"></i> <div><strong class="text-dark">3. เสนอแนะ:</strong> เสนอความคิดเห็นที่เป็นประโยชน์ เพื่อความเจริญก้าวหน้าของสมาคม</div></li>
-                <li class="d-flex"><i class="bi bi-arrow-right-circle-fill text-danger me-3 flex-shrink-0"></i> <div><strong class="text-dark">4. แจ้งย้ายที่อยู่:</strong> หากมีการเปลี่ยนแปลงที่อยู่ ต้องแจ้งเลขาธิการเป็นลายลักษณ์อักษร <span class="text-danger">ภายใน 1 เดือน</span> เพื่อแก้ไขทะเบียนให้ถูกต้อง</div></li>
+            <div class="panel">
+              <h2 class="panel-title">หน้าที่ของสมาชิก</h2>
+              <ul class="check-list">
+                <li><i class="bi bi-arrow-right-circle" aria-hidden="true"></i><div><strong>1. ปฏิบัติตามกฎ:</strong> เคารพข้อบังคับและระเบียบของสมาคมโดยเคร่งครัด</div></li>
+                <li><i class="bi bi-arrow-right-circle" aria-hidden="true"></i><div><strong>2. ให้ความร่วมมือ:</strong> ช่วยเหลือการดำเนินงานและกิจกรรมต่างๆ ของสมาคมด้วยความเต็มใจ</div></li>
+                <li><i class="bi bi-arrow-right-circle" aria-hidden="true"></i><div><strong>3. เสนอแนะ:</strong> เสนอความคิดเห็นที่เป็นประโยชน์ เพื่อความเจริญก้าวหน้าของสมาคม</div></li>
+                <li><i class="bi bi-arrow-right-circle" aria-hidden="true"></i><div><strong>4. แจ้งย้ายที่อยู่:</strong> หากมีการเปลี่ยนแปลงที่อยู่ ต้องแจ้งเลขาธิการเป็นลายลักษณ์อักษร <span class="emph">ภายใน 1 เดือน</span> เพื่อแก้ไขทะเบียนให้ถูกต้อง</div></li>
               </ul>
             </div>
           </div>
@@ -331,67 +291,86 @@
       </div>
     </div>
 
+    <!-- COMMITTEE -->
     <div id="committee" class="app-page">
-      <div class="container py-5">
-        <h2 class="page-title w-100 text-center border-0 mb-3">คณะกรรมการบริหารสมาคมฯ</h2>
-        <p class="text-center text-muted mb-5">รายชื่อคณะกรรมการชุดปัจจุบัน (พ.ศ. 2568 - 2571)</p>
-        <div class="row g-4 justify-content-center" id="committee-full-container"></div>
+      <div class="container section">
+        <div class="page-head text-center">
+          <div class="eyebrow">พ.ศ. 2568 – 2571</div>
+          <h1 class="page-title">คณะกรรมการบริหารสมาคมฯ</h1>
+        </div>
+        <div class="row g-4 justify-content-center" id="committee-full-container">
+          <div class="col-lg-3 col-md-4 col-6"><div class="skeleton" style="aspect-ratio:4/6"></div></div>
+          <div class="col-lg-3 col-md-4 col-6"><div class="skeleton" style="aspect-ratio:4/6"></div></div>
+          <div class="col-lg-3 col-md-4 d-none d-md-block"><div class="skeleton" style="aspect-ratio:4/6"></div></div>
+          <div class="col-lg-3 d-none d-lg-block"><div class="skeleton" style="aspect-ratio:4/6"></div></div>
+        </div>
       </div>
     </div>
 
+    <!-- NEWS -->
     <div id="news" class="app-page">
-      <div class="container py-5">
-        <h2 class="page-title">ข่าวประชาสัมพันธ์และกิจกรรม</h2>
-        <div class="row g-4" id="news-full-container"></div>
+      <div class="container section">
+        <div class="page-head">
+          <div class="eyebrow">ข่าวสาร</div>
+          <h1 class="page-title">ข่าวประชาสัมพันธ์และกิจกรรม</h1>
+        </div>
+        <div class="row g-4" id="news-full-container">
+          <div class="col-md-4 col-sm-6"><div class="skeleton" style="height:320px"></div></div>
+          <div class="col-md-4 col-sm-6"><div class="skeleton" style="height:320px"></div></div>
+          <div class="col-md-4 col-sm-6 d-none d-md-block"><div class="skeleton" style="height:320px"></div></div>
+        </div>
       </div>
     </div>
+    </main>
 
-    <footer class="text-white pt-5 pb-4 mt-auto" style="background-color: var(--slate-gray);">
+    <footer class="site-footer pt-5 pb-4 mt-auto">
       <div class="container">
-        <div class="row gy-4 justify-content-center">
-          <div class="col-md-6 text-center border-end border-secondary border-opacity-50">
-            <h6 class="fw-bold text-uppercase mb-3" style="color: var(--tu-gold);"><i class="bi bi-geo-alt-fill me-1"></i> ที่ทำการสมาคมฯ</h6>
-            <span class="small text-white-50 d-block" style="line-height: 1.6;">
+        <div class="row gy-4">
+          <div class="col-lg-5">
+            <div class="footer-brand">
+              <img src="logo-tuswalumni.png" alt="">
+              <span>สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์<br>มหาวิทยาลัยธรรมศาสตร์</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <h6>ที่ทำการสมาคมฯ</h6>
+            <address class="mb-0" style="line-height:1.7">
               คณะสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์ (ท่าพระจันทร์)<br>
               เลขที่ 2 ถนนพระจันทร์ แขวงพระบรมมหาราชวัง<br>
               เขตพระนคร กรุงเทพฯ 10200
-            </span>
+            </address>
           </div>
-          <div class="col-md-6 text-center">
-            <h6 class="fw-bold text-uppercase mb-3" style="color: var(--tu-gold);"><i class="bi bi-envelope-fill me-1"></i> ติดต่อเรา</h6>
-            <div class="d-flex flex-column align-items-center gap-3">
-              <span class="small text-white-50">อีเมล: tu.sw.alumni@gmail.com</span>
-              <div class="d-flex gap-2">
-                <a class="social-icon" href="https://lin.ee/TCw8hTG" target="_blank" rel="noopener" aria-label="LINE"><i class="bi bi-line" aria-hidden="true"></i></a>
-                <a class="social-icon" href="https://www.facebook.com/tuswalumni" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-                <a class="social-icon" href="https://www.instagram.com/tuswalumni/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-              </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>ติดต่อเรา</h6>
+            <a href="mailto:tu.sw.alumni@gmail.com" class="d-block mb-3">tu.sw.alumni@gmail.com</a>
+            <div class="d-flex gap-2">
+              <a class="social-icon" href="https://lin.ee/TCw8hTG" target="_blank" rel="noopener" aria-label="LINE"><i class="bi bi-line" aria-hidden="true"></i></a>
+              <a class="social-icon" href="https://www.facebook.com/tuswalumni" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+              <a class="social-icon" href="https://www.instagram.com/tuswalumni/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
-        <hr class="my-4 border-secondary opacity-25">
-        <div class="text-center small text-white-50">
+        <div class="footer-bottom mt-4 pt-3">
           &copy; <span id="currentYear"></span> สมาคมนักศึกษาเก่าสังคมสงเคราะห์ศาสตร์ มหาวิทยาลัยธรรมศาสตร์
         </div>
       </div>
     </footer>
 
-    <button id="backToTop" aria-label="กลับด้านบน"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+    <button id="backToTop" type="button" aria-label="กลับด้านบน"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
 
-    <div class="modal fade" id="newsModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg">
-          <div class="modal-header" style="background-color: var(--tu-claret); color: white;">
-            <h5 class="modal-title fw-bold" id="newsModalTitle">หัวข้อข่าว</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div>
+              <div class="news-date mb-1" id="newsModalDate"></div>
+              <h5 class="modal-title" id="newsModalTitle"></h5>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="ปิด"></button>
           </div>
           <div class="modal-body p-4">
-            <img id="newsModalImg" src="" alt="ภาพประกอบข่าว" class="img-fluid rounded mb-4 w-100 shadow-sm" style="max-height: 400px; object-fit: contain; background: #f8f9fa;">
-            <div class="mb-3"><span class="badge rounded-pill text-dark" style="background-color: var(--tu-gold);" id="newsModalDate">Date</span></div>
-            <p id="newsModalDesc" class="text-secondary" style="white-space: pre-wrap; line-height: 1.7;">รายละเอียดข่าว...</p>
-          </div>
-          <div class="modal-footer border-0 bg-light">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
+            <img id="newsModalImg" alt="ภาพประกอบข่าว" class="img-fluid mb-4 w-100">
+            <div id="newsModalDesc"></div>
           </div>
         </div>
       </div>
